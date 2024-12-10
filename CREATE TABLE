@@ -27,11 +27,12 @@ CREATE TABLE elementy_zamowienia (
 
 CREATE TABLE produkty (
     produkt_id INTEGER PRIMARY KEY,
-    nazwa VARCHAR (255) NOT NULL UNIQUE,
+    nazwa_produktu VARCHAR (255) NOT NULL UNIQUE,
     opis TEXT NOT NULL,
     kategoria_id INTEGER ,
     cena DECIMAL (10 , 2) NOT NULL
     ilosc_w_magazynie INTEGER NOT NULL
+    kategoria_id INTEGER NOT NULL
 );
 
 
@@ -40,16 +41,18 @@ CREATE TABLE użytkownicy (
     imie VARCHAR (15) NOT NULL,
     nazwisko VARCHAR (15) NOT NULL,
     email VARCHAR (15) NOT NULL UNIQUE,
-    haslo VARCHAR (15) NOT NULL
+    password VARCHAR (15) NOT NULL,
+    numer_tel VARCHAR(15) NOT NULL, 
+    data_uro datetime NOT NULL
 );
 
 
 CREATE TABLE zamowienia (
     order_id INTEGER PRIMARY KEY,
     user_id INTEGER,
-    data DATETIME NOT NULL,
+    data_zamowienia DATETIME NOT NULL,
     status ENUM NOT NULL,
-    calkowita_kwota DECIMAL (10 , 2) NOT NULL
+    metoda_platnosci_id INTEGER NOT NULL
 );
 
 
@@ -64,7 +67,8 @@ CREATE TABLE opinie (
     produkt_id INTEGER,
     user_id INTEGER,
     ocena INTEGER NOT NULL,
-    komentarz TEXT NOT NULL
+    opinia TEXT NOT NULL,
+    data_opinii datetime
 );
 
 
