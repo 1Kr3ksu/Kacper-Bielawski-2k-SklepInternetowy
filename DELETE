@@ -1,0 +1,6 @@
+DELETE FROM metody_platnosci
+WHERE metoda_plat_id = 10;
+
+
+DELETE FROM dostawy
+WHERE dostawa_id = 5;
