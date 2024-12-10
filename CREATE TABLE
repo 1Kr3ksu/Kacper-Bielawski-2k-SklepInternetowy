@@ -29,8 +29,9 @@ CREATE TABLE produkty (
     produkt_id INTEGER PRIMARY KEY,
     nazwa VARCHAR (255) NOT NULL UNIQUE,
     opis TEXT NOT NULL,
-    kategoria TEXT NOT NULL,
-    cena_podstawowa DECIMAL (10 , 2) NOT NULL
+    kategoria_id INTEGER ,
+    cena DECIMAL (10 , 2) NOT NULL
+    ilosc_w_magazynie INTEGER NOT NULL
 );
 
 
