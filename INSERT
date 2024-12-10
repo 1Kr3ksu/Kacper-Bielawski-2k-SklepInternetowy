@@ -24,3 +24,98 @@ VALUES
 (8, 'Mysz komputerowa', 'Mysz optyczna USB', 1, 200, 30.00),
 (9, 'Bluzka', 'Bluzka bawełniana', 3, 80, 50.00),
 (10, 'Tablet', 'Tablet z ekranem 10" i Androidem', 1, 60, 800.00);
+
+
+INSERT INTO adresy (adres_id, user_id, miasto, wojewodztwo, kod_pocztowy, kraj, typ_adresu)
+VALUES
+(1, 1, 'Warszawa', 'Mazowieckie', '00-001', 'Polska', 'rozliczeniowy'),
+(2, 2, 'Kraków', 'Małopolskie', '31-001', 'Polska', 'dostawy'),
+(3, 3, 'Wrocław', 'Dolnośląskie', '50-001', 'Polska', 'rozliczeniowy'),
+(4, 4, 'Poznań', 'Wielkopolskie', '60-001', 'Polska', 'dostawy'),
+(5, 5, 'Gdańsk', 'Pomorskie', '80-001', 'Polska', 'rozliczeniowy'),
+(6, 6, 'Szczecin', 'Zachodniopomorskie', '70-001', 'Polska', 'dostawy'),
+(7, 7, 'Lublin', 'Lubelskie', '20-001', 'Polska', 'rozliczeniowy'),
+(8, 8, 'Bydgoszcz', 'Kujawsko-Pomorskie', '85-001', 'Polska', 'dostawy'),
+(9, 9, 'Łódź', 'Łódzkie', '90-001', 'Polska', 'rozliczeniowy'),
+(10, 10, 'Katowice', 'Śląskie', '40-001', 'Polska', 'dostawy');
+
+
+INSERT INTO ceny (cena_id, id_produktu, cena)
+VALUES
+(1, 1, 3500.00),
+(2, 2, 1500.00),
+(3, 3, 20.00),
+(4, 4, 2000.00),
+(5, 5, 2.00),
+(6, 6, 100.00),
+(7, 7, 250.00),
+(8, 8, 30.00),
+(9, 9, 50.00),
+(10, 10, 800.00);
+
+
+INSERT INTO elementy_zamowienia (order_item_id, order_id, produkt_id, ilosc, calkowita_cena)
+VALUES
+(1, 1, 1, 2, 7000.00),
+(2, 2, 2, 1, 1500.00),
+(3, 3, 3, 5, 100.00),
+(4, 4, 4, 1, 2000.00),
+(5, 5, 5, 10, 20.00),
+(6, 6, 6, 3, 300.00),
+(7, 7, 7, 2, 500.00),
+(8, 8, 8, 1, 30.00),
+(9, 9, 9, 2, 100.00),
+(10, 10, 10, 1, 800.00);
+
+
+INSERT INTO zamówienia (order_id, user_id, data_zamowienia, metoda_platnosci_id, status)
+VALUES
+(1, 1, '2024-12-01 14:30:00', 1, 'pakowanie'),
+(2, 2, '2024-12-02 10:15:00', 2, 'wystawienie'),
+(3, 3, '2024-12-02 17:45:00', 3, 'w drodze'),
+(4, 4, '2024-12-03 11:00:00', 1, 'dostarczenie'),
+(5, 5, '2024-12-04 09:30:00', 2, 'pakowanie'),
+(6, 6, '2024-12-05 16:00:00', 1, 'wystawienie'),
+(7, 7, '2024-12-06 12:30:00', 3, 'w drodze'),
+(8, 8, '2024-12-07 08:45:00', 2, 'dostarczenie'),
+(9, 9, '2024-12-08 19:00:00', 1, 'pakowanie'),
+(10, 10, '2024-12-09 13:30:00', 2, 'wystawienie');
+
+INSERT INTO opinie (opinie_id, produkt_id, user_id, ocena, opinia, data_opinii)
+VALUES
+(1, 1, 1, 5, 'Bardzo dobry laptop, działa bez zarzutów!', '2024-12-01 14:30:00'),
+(2, 2, 2, 4, 'Smartfon jest świetny, ale bateria mogłaby być lepsza.', '2024-12-02 10:15:00'),
+(3, 3, 3, 5, 'Kawa ma bardzo intensywny smak, polecam!', '2024-12-02 17:45:00'),
+(4, 4, 4, 4, 'Telewizor ma doskonałą jakość obrazu, idealny do oglądania filmów.', '2024-12-03 11:00:00'),
+(5, 5, 5, 3, 'Woda mineralna jest smaczna, ale cena mogłaby być niższa.', '2024-12-04 09:30:00'),
+(6, 6, 6, 5, 'Szal jest miękki i ciepły, idealny na zimę.', '2024-12-05 16:00:00'),
+(7, 7, 7, 3, 'Buty są wygodne, ale kolor nie odpowiada moim oczekiwaniom.', '2024-12-06 12:30:00'),
+(8, 8, 8, 4, 'Myszka działa bardzo dobrze, ale jest trochę za mała.', '2024-12-07 08:45:00'),
+(9, 9, 9, 4, 'Bluzka jest świetna, ale materiał mógłby być lepszy.', '2024-12-08 19:00:00'),
+(10, 10, 10, 5, 'Tablet ma świetną wydajność, idealny do pracy.', '2024-12-09 13:30:00');
+
+INSERT INTO metody_platnosci (metoda_plat_id, nazwa, opis, cena_id)
+VALUES
+(1, 'Przelew bankowy', 'Standardowy przelew bankowy.', 1),
+(2, 'Karta kredytowa', 'Płatność kartą kredytową.', 2),
+(3, 'PayPal', 'Płatność za pomocą PayPal.', 3),
+(4, 'Płatność przy odbiorze', 'Płatność gotówką lub kartą przy odbiorze.', 4),
+(5, 'BLIK', 'Płatność za pomocą aplikacji mobilnej BLIK.', 5),
+(6, 'Przelew natychmiastowy', 'Natychmiastowy przelew online.', 6),
+(7, 'Karta podarunkowa', 'Płatność za pomocą karty podarunkowej.', 7),
+(8, 'Apple Pay', 'Płatność za pomocą Apple Pay.', 8),
+(9, 'Google Pay', 'Płatność za pomocą Google Pay.', 9),
+(10, 'Kryptowaluty', 'Płatność za pomocą kryptowalut (np. Bitcoin, Ethereum).', 10);
+
+ INSERT INTO dostawy (dostawa_id, zamowienie_id, adres_id, status, data_dostawy)
+VALUES
+(1, 1, 1, 'w drodze', '2024-12-01 16:00:00'),
+(2, 2, 2, 'dostarczenie', '2024-12-02 12:00:00'),
+(3, 3, 3, 'w drodze', '2024-12-02 18:00:00'),
+(4, 4, 4, 'w drodze', '2024-12-03 14:00:00'),
+(5, 5, 5, 'dostarczenie', '2024-12-04 10:30:00'),
+(6, 6, 6, 'w drodze', '2024-12-05 16:30:00'),
+(7, 7, 7, 'dostarczenie', '2024-12-06 09:45:00'),
+(8, 8, 8, 'w drodze', '2024-12-07 13:00:00'),
+(9, 9, 9, 'dostarczenie', '2024-12-08 11:15:00'),
+(10, 10, 10, 'w drodze', '2024-12-09 15:45:00');
