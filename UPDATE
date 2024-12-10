@@ -1,0 +1,7 @@
+UPDATE metody_platnosci
+SET nazwa = 'Visa', opis = 'Płatność za pomocą karty kredytowej Visa.'
+WHERE metoda_plat_id = 2; 
+
+UPDATE dostawy
+SET status = 'dostarczenie', data_dostawy = '2024-12-03 12:00:00'
+WHERE dostawa_id = 3;
