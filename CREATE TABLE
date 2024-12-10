@@ -75,3 +75,11 @@ CREATE TABLE dostawy (
     status ENUM('oczekujaca', 'w_drodze', 'dostarczona') NOT NULL,
     data_dostawy DATETIME
 );
+
+
+CREATE TABLE metody_platnosci (
+    metoda_plat_id INT PRIMARY KEY,
+    nazwa VARCHAR(255) NOT NULL,
+    opis TEXT,
+    cena_id INT
+);
