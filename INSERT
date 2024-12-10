@@ -1,0 +1,26 @@
+INSERT INTO użytkownicy (user_id, imie, nazwisko, email, password, numer_tel, data_uro)
+VALUES
+(1, 'Jan', 'Kowalski', 'jan.kowalski@example.com', 'haslo123', '+48 123 456 789', '1985-05-10'),
+(2, 'Anna', 'Nowak', 'anna.nowak@example.com', 'haslo456', '+48 234 567 890', '1990-06-20'),
+(3, 'Marek', 'Zieliński', 'marek.zielinski@example.com', 'haslo789', '+48 345 678 901', '1988-07-15'),
+(4, 'Karolina', 'Wójcik', 'karolina.wojcik@example.com', 'haslo101', '+48 456 789 012', '1992-08-30'),
+(5, 'Tomasz', 'Lewandowski', 'tomasz.lewandowski@example.com', 'haslo202', '+48 567 890 123', '1987-09-25'),
+(6, 'Piotr', 'Szymański', 'piotr.szymanski@example.com', 'haslo303', '+48 678 901 234', '1995-10-05'),
+(7, 'Ewa', 'Kwiatkowska', 'ewa.kwiatkowska@example.com', 'haslo404', '+48 789 012 345', '1993-11-12'),
+(8, 'Kamil', 'Jankowski', 'kamil.jankowski@example.com', 'haslo505', '+48 890 123 456', '1986-12-01'),
+(9, 'Oliwia', 'Kaczmarek', 'oliwia.kaczmarek@example.com', 'haslo606', '+48 901 234 567', '1991-01-21'),
+(10, 'Paweł', 'Kozłowski', 'pawel.kozlowski@example.com', 'haslo707', '+48 012 345 678', '1989-02-18');
+
+
+INSERT INTO produkty (produkt_id, nazwa_produktu, opis, kategoria_id, ilosc_w_magazynie, cena)
+VALUES
+(1, 'Laptop', 'Laptop z procesorem Intel i 16GB RAM', 1, 50, 3500.00),
+(2, 'Smartfon', 'Smartfon z Androidem i 128GB pamięci', 1, 100, 1500.00),
+(3, 'Kawa', 'Kawa ziarnista 500g', 2, 200, 20.00),
+(4, 'Telewizor', 'Telewizor 55" 4K', 1, 30, 2000.00),
+(5, 'Woda mineralna', 'Woda w butelkach 1.5L', 2, 500, 2.00),
+(6, 'Szal', 'Szal zimowy z wełny', 3, 150, 100.00),
+(7, 'Buty sportowe', 'Buty do biegania', 3, 120, 250.00),
+(8, 'Mysz komputerowa', 'Mysz optyczna USB', 1, 200, 30.00),
+(9, 'Bluzka', 'Bluzka bawełniana', 3, 80, 50.00),
+(10, 'Tablet', 'Tablet z ekranem 10" i Androidem', 1, 60, 800.00);
