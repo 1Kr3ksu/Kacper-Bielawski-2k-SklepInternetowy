@@ -1,0 +1,76 @@
+CREATE TABLE adresy (
+    adres_id INTEGER PRIMARY KEY,
+    user_id INTEGER,
+    miasto VARCHAR (100) NOT NULL,
+    wojewodztwo VARCHAR (100) NOT NULL,
+    kod_pocztowy VARCHAR (6) NOT NULL,
+    kraj VARCHAR (50) TEXT NOT NULL,
+    typ_adresu TEXT NOT NULL
+); 
+
+
+CREATE TABLE ceny (
+    cena_id INTEGER PRIMARY KEY,
+    id_produktu INTEGER,
+    cena DECIMAL (10 , 2) NOT NULL
+);
+
+
+
+CREATE TABLE elementy_zamowienia (
+    order_item_id INTEGER PRIMARY KEY,
+    order_id INTEGER,
+    produkt_id INTEGER,
+    ilosc INTEGER NOT NULL,
+    calkowita_cena decimal (10 , 2) NOT NULL
+);
+
+CREATE TABLE produkty (
+    produkt_id INTEGER PRIMARY KEY,
+    nazwa VARCHAR (255) NOT NULL UNIQUE,
+    opis TEXT NOT NULL,
+    kategoria TEXT NOT NULL,
+    cena_podstawowa DECIMAL (10 , 2) NOT NULL
+);
+
+
+CREATE TABLE użytkownicy (
+    user_id INTEGER PRIMARY KEY,
+    imie VARCHAR (15) NOT NULL,
+    nazwisko VARCHAR (15) NOT NULL,
+    email VARCHAR (15) NOT NULL UNIQUE,
+    haslo VARCHAR (15) NOT NULL
+);
+
+
+CREATE TABLE zamowienia (
+    order_id INTEGER PRIMARY KEY,
+    user_id INTEGER,
+    data DATETIME NOT NULL,
+    status ENUM NOT NULL,
+    calkowita_kwota DECIMAL (10 , 2) NOT NULL
+);
+
+
+CREATE TABLE kategoria (
+   kategoria_id INTEGER PRIMARY KEY,
+    nazwa VARCHAR (50) NOT NULL UNIQUE,
+    opis TEXT NOT NULL
+);
+
+CREATE TABLE opinie (
+    opinia_id INTEGER PRIMARY KEY,
+    produkt_id INTEGER,
+    user_id INTEGER,
+    ocena INTEGER NOT NULL,
+    komentarz TEXT NOT NULL
+);
+
+
+CREATE TABLE dostawy (
+    dostawa_id INTEGER PRIMARY KEY,
+    zamowienie_id INTEGER,
+    adres_id INTEGER,
+    status ENUM('oczekujaca', 'w_drodze', 'dostarczona') NOT NULL,
+    data_dostawy DATETIME
+);
