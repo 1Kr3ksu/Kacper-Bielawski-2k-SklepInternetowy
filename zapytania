@@ -1,0 +1,49 @@
+
+
+
+1. SELECT z filtrem (WHERE) i sortowaniem (ORDER BY):
+- Pobranie użytkowników z numerem telefonu zaczynającym się od "123" i posortowanie po nazwisku.
+SELECT user_id, imie, nazwisko, numer_tel
+FROM użytkownicy
+WHERE numer_tel LIKE '123%'
+ORDER BY nazwisko ASC;
+
+2.SELECT z grupowaniem (GROUP BY) i funkcjami agregującymi:
+- Obliczenie liczby zamówień dla każdego użytkownika.
+SELECT user_id, COUNT(order_id) AS liczba_zamowien FROM zamówienia GROUP BY user_id ORDER BY liczba_zamowien DESC;
+
+3.Funkcje agregujące (SUM, AVG, MAX, MIN):
+- Obliczenie sumy, średniej, minimalnej i maksymalnej wartości zamówień.
+SELECT 
+    SUM(cena) AS suma_cen, 
+    AVG(cena) AS srednia_cena, 
+    MIN(cena) AS minimalna_cena, 
+    MAX(cena) AS maksymalna_cena
+FROM produkty;
+
+4.Podzapytania:
+- Pobranie produktów, których cena jest wyższa niż średnia cena wszystkich produktów.
+SELECT produkt_id, nazwa_produktu, cena
+FROM produkty
+WHERE cena > (SELECT AVG(cena) FROM produkty)
+ORDER BY cena DESC;
+
+5. INNER JOIN (łączenie tabel):
+- Pobranie listy zamówień z danymi użytkowników i metodą płatności.
+SELECT z.order_id, u.imie, u.nazwisko, m.nazwa AS metoda_platnosci, z.data_zamowienia
+FROM zamówienia z
+INNER JOIN użytkownicy u ON z.user_id = u.user_id
+INNER JOIN metody_platnosci m ON z.metoda_platnosci_id = m.metoda_plat_id
+ORDER BY z.data_zamowienia DESC;
+
+6.LEFT JOIN (OUTER JOIN):
+- Pobranie wszystkich użytkowników wraz z ich zamówieniami (nawet jeśli użytkownik nie złożył zamówienia)
+SELECT u.user_id, u.imie, u.nazwisko, z.order_id, z.data_zamowienia
+FROM użytkownicy u
+LEFT JOIN zamówienia z ON u.user_id = z.user_id
+ORDER BY u.user_id
+LIMIT 0, 25;
+
+7.Grupowanie i agregacja z JOIN:
+-Obliczenie sumy wartości zamówień dla każdego użytkownika.
+SELECT u.user_id, u.imie, u.nazwisko, SUM(p.cena) AS suma_zamowien FROM zamówienia z INNER JOIN użytkownicy u ON z.user_id = u.user_id INNER JOIN produkty p ON produkt_id = p.produkt_id GROUP BY u.user_id, u.imie, u.nazwisko ORDER BY suma_zamowien DESC LIMIT 0, 25;
