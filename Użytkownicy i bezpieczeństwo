@@ -1,0 +1,14 @@
+-- Tworzenie użytkownika Administratora
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'haslo_admin';
+
+-- Tworzenie użytkownika do odczytu
+CREATE USER 'readonly_user'@'localhost' IDENTIFIED BY 'haslo_readonly';
+
+Nadanie wszystkich uprawnień dla użytkownika admin:
+GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost' WITH GRANT OPTION;
+
+Nadanie uprawnienia tylko do przeglądania dla readonly_user:
+GRANT SELECT ON *.* TO 'readonly_user'@'localhost';
+
+Przypisanie uprawnienia tylko do odczytu tabeli kategoria
+GRANT SELECT ON `sklep-internetowy`.kategoria TO 'readonly_user'@'localhost';
