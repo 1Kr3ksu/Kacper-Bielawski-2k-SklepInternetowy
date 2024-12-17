@@ -1,0 +1,36 @@
+
+Instrukcja użytkowania bazy danych
+1. Tworzenie użytkowników:
+Rejestracja: Użytkownicy mogą zostać dodani do systemu za pomocą formularza rejestracji, który zapisuje dane takie jak imię, nazwisko, adres e-mail (unikalny), hasło oraz numer telefonu.
+Unikalność e-maila: Należy zapewnić, aby e-mail użytkownika był unikalny, aby uniknąć duplikatów.
+Role użytkowników: Użytkownicy mogą mieć różne role, takie jak "Administrator" lub "Użytkownik". Rolę użytkownika można przypisać w zależności od uprawnień w systemie.
+Zarządzanie użytkownikami: Administratorzy mają dostęp do zarządzania użytkownikami (modyfikacja, usuwanie, przypisanie ról).
+2. Zarządzanie produktami:
+Dodawanie produktów: Produkty dodawane są do odpowiednich kategorii. W formularzu dodawania produktu należy wprowadzić nazwę, opis, cenę oraz kategorię.
+Aktualizacja cen: Ceny produktów można zmieniać w tabeli ceny. Ceny mogą się zmieniać na podstawie sezonowych promocji, zmian kosztów lub polityki cenowej.
+Przechowywanie informacji o produktach: Produkty są również powiązane z tabelą kategoria, która umożliwia zarządzanie rodzajami produktów, a także z tabelą opinie, gdzie użytkownicy mogą wystawiać opinie o produktach.
+Monitoring ilości w magazynie: Ilość produktów dostępnych w magazynie jest przechowywana w tabeli produkty i może być zaktualizowana, aby odzwierciedlić zmiany wynikające z zamówień.
+3. Zarządzanie zamówieniami:
+Tworzenie zamówienia: Użytkownicy składają zamówienia, wybierając produkty, określając ilość oraz wybierając metodę płatności. Zamówienia są zapisywane w tabeli zamówienia.
+Śledzenie statusu zamówienia: Status zamówienia może obejmować etapy takie jak "pakowanie", "wysyłanie", "w drodze" i "dostarczone". Status jest przechowywany w tabeli zamówienia.
+Elementy zamówienia: Szczegóły zamówionych produktów, takie jak cena i ilość, są zapisywane w tabeli elementy_zamowienia, która zawiera pozycje zamówienia i ich powiązanie z produktem.
+4. Opinie o produktach:
+Dodawanie opinii: Użytkownicy mogą wystawiać opinie na temat produktów, które kupili. Opinia zawiera ocenę (np. od 1 do 5 gwiazdek) oraz tekstową recenzję.
+Powiązanie z produktami: Każda opinia jest powiązana z konkretnym produktem oraz użytkownikiem, którzy ją wystawili. Opinie są przechowywane w tabeli opinie.
+Przeglądanie opinii: Opinie mogą być przeglądane przez innych użytkowników na stronie produktu, co wpływa na decyzję zakupową.
+5. Dostawy:
+Śledzenie dostaw: Tabela dostawy zawiera informacje o dostawach związanych z zamówieniami, takie jak status dostawy (np. "oczekująca", "w drodze", "dostarczona") oraz datę dostawy.
+Przypisanie adresu dostawy: Każda dostawa jest powiązana z odpowiednim adresem (z tabeli adresy), który użytkownik podaje podczas składania zamówienia.
+Monitorowanie statusu dostawy: Administratorzy i użytkownicy mogą monitorować statusy dostaw i zmieniać je w razie potrzeby.
+6. Zarządzanie kategoriami produktów:
+Tworzenie kategorii: Produkty są przypisane do określonych kategorii, które są zarządzane w tabeli kategoria. Kategorie mogą obejmować np. "Elektronika", "Odzież", "Zabawki" itp.
+Przypisanie produktów do kategorii: Produkty muszą być przypisane do odpowiednich kategorii podczas ich dodawania do systemu.
+7. Raportowanie i analiza:
+Raporty sprzedaży: Administratorzy mogą generować raporty sprzedaży, analizować przychody, liczbę zamówień oraz produkty o najwyższej sprzedaży. Zapytania SQL mogą być użyteczne w tym zakresie.
+Raporty dotyczące opinii: Można generować raporty na temat produktów z najwyższymi ocenami, aby pomóc w dalszym rozwoju oferty.
+8. Administrowanie bazą danych:
+Zarządzanie bazą danych: Administratorzy mają dostęp do tworzenia kopii zapasowych bazy danych, czyszczenia starych danych oraz modyfikowania struktury tabel.
+Przydzielanie uprawnień: Administratorzy mogą przydzielać odpowiednie uprawnienia użytkownikom i grupom, aby ograniczyć dostęp do danych i operacji w systemie.
+Dodatkowe funkcje:
+Bezpieczeństwo: Hasła użytkowników powinny być przechowywane w bezpieczny sposób (np. za pomocą haszowania), aby chronić dane przed nieautoryzowanym dostępem.
+Zarządzanie transakcjami: Transakcje mogą obejmować operacje na kilku tabelach (np. zamówienia i płatności), które powinny być zarządzane w sposób atomowy, aby uniknąć błędów w systemie.
