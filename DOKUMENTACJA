@@ -1,0 +1,159 @@
+Diagram erd znajduje sie w osobnym pliku.
+
+Opis tabel i ich relacji:
+
+
+Tabela: adresy
+Opis: Tabela zawiera informacje o adresach użytkowników. Może zawierać zarówno adresy do fakturowania, jak i adresy dostawy.
+Kolumny:
+adres_id: unikalny identyfikator adresu (Primary Key)
+user_id: identyfikator użytkownika powiązany z tym adresem (Foreign Key)
+miasto: miasto
+wojewodztwo: województwo
+kod_pocztowy: kod pocztowy
+kraj: kraj
+typ_adresu: typ adresu (np. "rozliczeniowy", "dostawy")
+
+
+Tabela: ceny
+Opis: Tabela zawiera ceny produktów.
+Kolumny:
+cena_id: unikalny identyfikator ceny (Primary Key)
+id_produktu: identyfikator produktu, do którego przypisano cenę (Foreign Key)
+cena: cena produktu
+
+
+Tabela: dostawy
+Opis: Tabela zawiera informacje o dostawach zamówionych produktów.
+Kolumny:
+dostawa_id: unikalny identyfikator dostawy (Primary Key)
+zamowienie_id: identyfikator zamówienia (Foreign Key)
+adres_id: identyfikator adresu (Foreign Key)
+status: status dostawy (np. "oczekująca", "w_drodze", "dostarczona")
+data_dostawy: data dostawy
+
+
+Tabela: elementy_zamowienia
+Opis: Tabela przechowuje szczegóły zamówionych produktów w danym zamówieniu.
+Kolumny:
+order_item_id: unikalny identyfikator elementu zamówienia (Primary Key)
+order_id: identyfikator zamówienia (Foreign Key)
+produkt_id: identyfikator produktu (Foreign Key)
+ilosc: liczba zamówionych sztuk
+calkowita_cena: całkowita cena za dany produkt w zamówieniu
+
+
+Tabela: kategoria
+Opis: Tabela przechowuje kategorie produktów.
+Kolumny:
+kategoria_id: unikalny identyfikator kategorii (Primary Key)
+nazwa_kategorii: nazwa kategorii (unikalna)
+opis_kategorii: opis kategorii
+
+
+Tabela: metody_platnosci
+Opis: Tabela zawiera dostępne metody płatności.
+Kolumny:
+metoda_plat_id: unikalny identyfikator metody płatności (Primary Key)
+nazwa: nazwa metody płatności
+opis: opis metody płatności
+cena_id: identyfikator ceny (Foreign Key)
+
+
+Tabela: opinie
+Opis: Tabela zawiera opinie użytkowników o produktach.
+Kolumny:
+opinie_id: unikalny identyfikator opinii (Primary Key)
+user_id: identyfikator użytkownika, który wystawił opinię (Foreign Key)
+produkt_id: identyfikator produktu (Foreign Key)
+ocena: ocena produktu (liczba)
+opinia: treść opinii
+data_opinii: data wystawienia opinii
+
+
+Tabela: produkty
+Opis: Tabela przechowuje produkty oferowane przez sklep.
+Kolumny:
+produkt_id: unikalny identyfikator produktu (Primary Key)
+nazwa_produktu: nazwa produktu (unikalna)
+opis: opis produktu
+cena: cena produktu
+ilosc_w_magazynie: liczba dostępnych sztuk
+kategoria_id: identyfikator kategorii, do której należy produkt (Foreign Key)
+
+
+Tabela: użytkownicy
+Opis: Tabela zawiera dane użytkowników sklepu.
+Kolumny:
+user_id: unikalny identyfikator użytkownika (Primary Key)
+imie: imię użytkownika
+nazwisko: nazwisko użytkownika
+email: adres email użytkownika (unikalny)
+password: hasło użytkownika
+numer_tel: numer telefonu
+data_uro: data urodzenia użytkownika
+
+
+Tabela: zamówienia
+Opis: Tabela przechowuje zamówienia złożone przez użytkowników.
+Kolumny:
+order_id: unikalny identyfikator zamówienia (Primary Key)
+user_id: identyfikator użytkownika, który złożył zamówienie (Foreign Key)
+data_zamowienia: data i godzina złożenia zamówienia
+status: status zamówienia (np. "pakowanie", "wysyłanie", "w drodze", "dostarczone")
+metoda_platnosci_id: identyfikator metody płatności (Foreign Key)
+produkt_id: identyfikator produktu (Foreign Key)
+ilosc: liczba zamówionych sztuk
+
+Relacje między tabelami: 
+Adresy - Użytkownicy:
+
+1.Relacja: 1 do N
+Jeden użytkownik może mieć wiele adresów (np. adresy do fakturowania i dostawy).
+user_id w tabeli adresy jest kluczem obcym wskazującym na user_id w tabeli użytkownicy.
+Ceny - Produkty:
+
+2.Relacja: 1 do N
+Każdy produkt może mieć przypisaną jedną lub więcej cen (np. różne ceny w zależności od promocji).
+id_produktu w tabeli ceny jest kluczem obcym wskazującym na produkt_id w tabeli produkty.
+Dostawy - Zamówienia:
+
+3.Relacja: 1 do N
+Jedno zamówienie może mieć jedną lub więcej dostaw.
+zamowienie_id w tabeli dostawy jest kluczem obcym wskazującym na order_id w tabeli zamówienia.
+Elementy Zamówienia - Zamówienia:
+
+4.Relacja: 1 do N
+Jedno zamówienie może zawierać wiele produktów (elementy zamówienia).
+order_id w tabeli elementy_zamowienia jest kluczem obcym wskazującym na order_id w tabeli zamówienia.
+Elementy Zamówienia - Produkty:
+
+5.Relacja: 1 do N
+Jeden produkt może występować w wielu zamówieniach.
+produkt_id w tabeli elementy_zamowienia jest kluczem obcym wskazującym na produkt_id w tabeli produkty.
+Opinie - Produkty:
+
+6.Relacja: 1 do N
+Jeden produkt może mieć wiele opinii od różnych użytkowników.
+produkt_id w tabeli opinie jest kluczem obcym wskazującym na produkt_id w tabeli produkty.
+Opinie - Użytkownicy:
+
+7.Relacja: 1 do N
+Jeden użytkownik może wystawić wiele opinii o różnych produktach.
+user_id w tabeli opinie jest kluczem obcym wskazującym na user_id w tabeli użytkownicy.
+Produkty - Kategorie:
+
+8.Relacja: N do 1
+Jeden produkt należy do jednej kategorii, ale jedna kategoria może zawierać wiele produktów.
+kategoria_id w tabeli produkty jest kluczem obcym wskazującym na kategoria_id w tabeli kategoria.
+Zamówienia - Użytkownicy:
+
+9.Relacja: 1 do N
+Jeden użytkownik może złożyć wiele zamówień.
+user_id w tabeli zamówienia jest kluczem obcym wskazującym na user_id w tabeli użytkownicy.
+Zamówienia - Metody Płatności:
+
+10.Relacja: N do 1
+Jedno zamówienie jest powiązane z jedną metodą płatności.
+metoda_platnosci_id w tabeli zamówienia jest kluczem obcym wskazującym na metoda_plat_id w tabeli metody_platnosci.
+ 
