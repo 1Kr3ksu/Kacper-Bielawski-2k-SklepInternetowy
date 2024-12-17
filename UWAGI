@@ -1,0 +1,4 @@
+Ps dodałem tabele ilość zamówień ale nie przedstawiłem tego w diagramie erd 
+, ponieważ dopiero w późniejszej fazie projektu zauważyłem że będzie mi to potrzebne , mam nadzieje że pan to zrozumie , tu jest te zapytanie:
+ALTER TABLE zamówienia
+ADD COLUMN ilosc INT(11) NOT NULL DEFAULT 1;
